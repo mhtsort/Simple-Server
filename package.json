@@ -1,0 +1,15 @@
+{
+  "name": "simple_server",
+  "version": "1.0.0",
+  "description": "My first simple server",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tsortanidis Dimitris",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
