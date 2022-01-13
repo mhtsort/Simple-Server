@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 const server = express();
-const PORT = 3000;
+const PORT = process.env.port || 443;
 server.use("/", express.static("website"));
 server.use("/2", express.static("website/second.html"));
 server.get("/3", function (req, res) {
@@ -21,4 +21,4 @@ for (let i of [5, 6, 7, 8]) {
     console.log(req);
   });
 }
-server.listen(PORT, () => console.log("Server up and running"));
+server.listen(PORT, () => console.log("Server up and running on "+PORT));
