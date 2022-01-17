@@ -1,10 +1,12 @@
 import express from "express";
 import path from "path";
+
 import cors from "cors";
 var server = express();
 //server.use(cors);
 const PORT = process.env.PORT || 3000;
 server.use("/", cors(), express.static("website"));
+
 server.use("/2", express.static("website/second.html"));
 
 server.use(express.json());
@@ -26,6 +28,7 @@ for (let i of [5, 6, 7, 8]) {
     console.log(req);
   });
 }
+
 server.listen(PORT, () =>
   console.log("Server up and running on port :" + PORT)
 );
