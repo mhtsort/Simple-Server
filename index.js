@@ -1,9 +1,14 @@
 import express from "express";
 import path from "path";
-const server = express();
-const PORT = 3000;
-server.use("/", express.static("website"));
+import cors from "cors";
+var server = express();
+//server.use(cors);
+const PORT = process.env.PORT || 3000;
+server.use("/", cors(), express.static("website"));
 server.use("/2", express.static("website/second.html"));
+
+server.use(express.json());
+//server.use(express.urlencoded());
 server.get("/3", function (req, res) {
   try {
     res.sendFile("website/index.html");
@@ -21,4 +26,13 @@ for (let i of [5, 6, 7, 8]) {
     console.log(req);
   });
 }
-server.listen(PORT, () => console.log("Server up and running"));
+server.listen(PORT, () =>
+  console.log("Server up and running on port :" + PORT)
+);
+
+server.post("/handle", cors(), (request, response) => {
+  console.log(request.ip + " ---> " + request.body);
+  let incoming = 87; // request.body;
+  response.send(`<h1>Done</h1> ${JSON.stringify(request.body)}`);
+  response.end();
+});
